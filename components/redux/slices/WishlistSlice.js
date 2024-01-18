@@ -12,6 +12,7 @@ const WishlistSlice = createSlice({
             tempData.map((item)=>{
                 if(item.id==action.payload.id){
                     isItemExist = true;
+                    console.log(action.payload.id)
                 }
             });
             if(!isItemExist){
@@ -20,21 +21,17 @@ const WishlistSlice = createSlice({
             state.data = tempData;
         },
 
+        // RemoveItemFromWishlist(state, action){
+        //     let tempData = state.data;
+        //     console.log("tempData",tempData);
+        // }
+
         RemoveItemFromWishlist(state, action){
             let tempData = state.data;
             tempData.splice(action.payload, 1)
             state.data = tempData;
         },
-        // RemoveItemFromWishlist(state, action){
-        //     let tempData = state.data;
-        //     tempData.map((item, index)=>{
-        //         if(item.id == action.payload.id){
-        //             console.log("found");
-        //         }
-        //     });
-        //     // tempData.splice(action.payload, 1)
-        //     state.data = tempData;
-        // },
+
     },
 });
 export const {addItemToWishlist, RemoveItemFromWishlist} = WishlistSlice.actions;

@@ -47,7 +47,7 @@ export default function Cart() {
 
                   {/* price */}
                   <Text style={styles.price}>
-                    {"$" + item.price}
+                    {"Rs." + item.totalPrice}
                   </Text>
 
                   {/* quantity */}

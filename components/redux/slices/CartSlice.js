@@ -13,6 +13,7 @@ const CartSlice = createSlice({
                 if(item.id==action.payload.id){
                     isItemExist = true;
                     item.qty = item.qty + 1 ;
+                    item.totalPrice = item.qty * item.price;
                 }
             });
             if(!isItemExist){
@@ -27,6 +28,7 @@ const CartSlice = createSlice({
             tempData.map((item)=>{
                 if(item.id==action.payload.id){
                     item.qty = item.qty - 1 ;
+                    item.totalPrice = item.qty * item.price;
                 }
             });
             state.data = tempData;

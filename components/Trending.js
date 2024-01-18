@@ -12,6 +12,7 @@ export default function Trending() {
   const dispatch = useDispatch();
   trending.map(item => {
     item.qty = 1;
+    item.totalPrice = item.price;
   });
   dispatch(addProduct(trending));
     return(

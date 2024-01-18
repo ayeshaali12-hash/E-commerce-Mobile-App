@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import {useState} from 'react';
 import { View, Image, StyleSheet, SafeAreaView, ScrollView, TextInput, TouchableOpacity, FlatList, Pressable } from 'react-native';
 import {  } from 'react-native-gesture-handler';
@@ -5,8 +6,9 @@ import { Button, Text , Checkbox} from 'react-native-paper';
 import { useSelector } from 'react-redux';
 
 export default function Search() {
-    const productss = useSelector((state)=>state.product.data);
+  const productss = useSelector((state)=>state.product.data);
     // console.log(productss);
+  const navigation = useNavigation();
 
     const [search, setSearch] = useState('');
     const [oldData, setOldData] = useState(productss);
@@ -18,9 +20,10 @@ export default function Search() {
         // console.log(newData);
         setSearchList(newData);
     };
+
     return(
-      <SafeAreaView style={{paddingTop:Platform.OS==='android'?40:0,backgroundColor:"white"}}>
-        <ScrollView style={styles.main}>
+      <SafeAreaView>
+          <View style={{height:60}}>
             <View style={styles.searchView}>
                 <View style={{flexDirection:'row', alignItems:'center'}}>
                 <Image 
@@ -34,73 +37,52 @@ export default function Search() {
                 }}
                 placeholder='Search here...' style={styles.serachInput}></TextInput>
                 </View>
-
+              
                 {/* cross icon */}
                 {search!=='' && (
-                    <TouchableOpacity style={[styles.icon,{ justifyContent:"center", alignItems:"center"}]}>
+                    <TouchableOpacity 
+                    style={[styles.icon,{ justifyContent:"center", alignItems:"center"}]}
+                    onPress={()=>{
+                      setSearch('');
+                      filterData('');
+                    }}>
                         <Image source={{uri:"https://icons.veryicon.com/png/o/miscellaneous/medium-thin-linear-icon/cross-23.png"}} 
                     style={styles.icon}></Image>
                     </TouchableOpacity>
                 )}
             </View>
-            <View style={{flexDirection: 'row', alignItems:'center', flexWrap:'wrap', margin:10}}>
-            {searchList.map((item, index) =>(
-              <Pressable key={index} onPress={()=> {navigation.navigate('Details', {data:item})}}>
-                {/* trending image */}
-                <View style={{marginHorizontal:10, marginVertical:25}}>
-                  <Image style={{width:150, height:150, resizeMode: "contain"}} 
-                    source={{uri:item.image}}
-                  />
-
-                  {/* trending name */}
-                  <Text style={{width:150, marginTop:10, textAlign:'center', fontSize:14}}>{item.name}</Text>
-
-                  {/* price and rating */}
-                  <View style={{marginTop:5, flexDirection:'row', alignItems:'center', justifyContent:'space-between'}}>
-                    <Text style={{fontSize:15, fontWeight:'bold', }}>{item.price}</Text>
-                    <Text style={{color:'#00CED1', fontWeight:'bold', }}>{item.rating} Rating</Text>
-                  </View>
-
-                  {/* add to cart button */}
-                  <Pressable style={{backgroundColor:"#00CED1", padding:10, borderRadius:20, justifyContent:'center', alignItems:'center', marginTop:10}}>
-                    <Text>Add to Cart</Text>
-                  </Pressable>
-                </View>
-              </Pressable>
-            ))}
             </View>
+            <ScrollView>
+
         </ScrollView>
       </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
-    main:{
-        // flex:1,
-        backgroundColor:"#fff",
-        height:"100%"
-    },
     searchView:{
-        width: '90%',
-        height: 50,
-        borderRadius: 20,
-        borderWidth:0.5,
-        alignSelf: 'center',
-        marginTop: 0,
-        flexDirection:'row',
-        justifyContent: 'space-between',
-        paddingLeft: 10,
-        paddingRight: 10,
-        alignItems:'center'
-    }, 
-    icon:{
-        width:24,
-        height:24,
-        resizeMode:'center',
-    }, 
-    serachInput:{
-        width:'80%', 
-        marginLeft: 10
-    }
-  });
+      width: '90%',
+      height: 50,
+      borderRadius: 20,
+      borderWidth:0.5,
+      alignSelf: 'center',
+      marginTop: 0,
+      flexDirection:'row',
+      justifyContent: 'space-between',
+      paddingLeft: 10,
+      paddingRight: 10,
+      alignItems:'center'
+  }, 
+  icon:{
+      width:24,
+      height:24,
+      resizeMode:'center',
+  }, 
+  serachInput:{
+      width:'80%', 
+      marginLeft: 10
+  }
+});
+
+
   

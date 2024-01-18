@@ -19,7 +19,7 @@ export default function Details() {
             <Text style={styles.desc}>{route.params.data.description}</Text>
             <View style={{flexDirection:'row'}}>
                 <Text style={[styles.price, {color:"#000"}]}>{"Price:"}</Text>
-                <Text style={styles.price}>{" $"+route.params.data.price}</Text>
+                <Text style={styles.price}>{" Rs."+route.params.data.price}</Text>
             </View>
             <TouchableOpacity style={styles.wishlist}
             onPress={() => {dispatch(addItemToWishlist(route.params.data))}}

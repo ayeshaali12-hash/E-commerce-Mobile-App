@@ -14,6 +14,7 @@ import Details from './components/Details';
 import {store} from '../new/components/redux/store'
 import { Provider } from 'react-redux';
 import {MaterialCommunityIcons} from "@expo/vector-icons"
+import CategoryDetail from './components/CategoryDetail';
 // import { createMaterialBottomTabNavigator } from 'react-native-paper/react-navigation';
 
 
@@ -63,6 +64,7 @@ export default function App() {
           <Stack.Screen name="Login" component={Login} options={{headerShown: false}} />
           <Stack.Screen name="Register" component={Register} options={{headerShown: false}}/>
           <Stack.Screen name="Details" component={Details} options={{headerShown: false}}/>
+          <Stack.Screen name="CategoryDetail" component={CategoryDetail} options={{headerShown: false}}/>
           <Stack.Screen name="Main" 
             component={AfterLogin} 
             options={{headerShown: false}} />

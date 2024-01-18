@@ -5,6 +5,8 @@ import { Button, Text, TextInput, Checkbox} from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { RemoveItemFromWishlist } from './redux/slices/WishlistSlice';
+// import { ReduceItemFromCart } from './redux/slices/CartSlice';
+// import { ReduceItemFromWishlist } from './redux/slices/WishlistSlice';
 
 export default function Favorite() {
   const items = useSelector((state) => state.wishlist);
